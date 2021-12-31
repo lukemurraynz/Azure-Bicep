@@ -33,18 +33,7 @@ resource AppServiceName_resource 'Microsoft.Web/sites@2021-02-01' = {
   kind: 'app'
   properties: {
     enabled: true
-    hostNameSslStates: [
-      {
-        name: 'webappnametest.azurewebsites.net'
-        sslState: 'Disabled'
-        hostType: 'Standard'
-      }
-      {
-        name: 'webappnametest.scm.azurewebsites.net'
-        sslState: 'Disabled'
-        hostType: 'Repository'
-      }
-    ]
+   
     serverFarmId: AppServicePlanName_resource.id
     reserved: false
     isXenon: false
@@ -62,10 +51,6 @@ resource AppServiceName_resource 'Microsoft.Web/sites@2021-02-01' = {
     clientCertEnabled: false
     clientCertMode: 'Required'
     hostNamesDisabled: false
-<<<<<<< HEAD
-=======
-    customDomainVerificationId: '3661834FA73C1A7109DB0AD1317DA54B669F25191DA2602A8EA1CB6599C405AA'
->>>>>>> 98c947f29e1c2e37a2ac0bee2ffb26146499276f
     containerSize: 0
     dailyMemoryTimeQuota: 0
     httpsOnly: true
@@ -81,7 +66,7 @@ _resource
   name: 'ftp'
   location: location
   properties: {
-    allow: true
+    allow: false
   }
 }
 
@@ -102,18 +87,7 @@ _resource
   location: location
   properties: {
     numberOfWorkers: 1
-    defaultDocuments: [
-      'Default.htm'
-      'Default.html'
-      'Default.asp'
-      'index.htm'
-      'index.html'
-      'iisstart.htm'
-      'default.aspx'
-      'index.php'
-      'hostingstart.html'
-    ]
-    netFrameworkVersion: 'v6.0'
+     netFrameworkVersion: 'v6.0'
     requestTracingEnabled: false
     remoteDebuggingEnabled: false
     remoteDebuggingVersion: 'VS2019'
@@ -127,14 +101,7 @@ _resource
     webSocketsEnabled: false
     alwaysOn: true
     managedPipelineMode: 'Integrated'
-    virtualApplications: [
-      {
-        virtualPath: '/'
-        physicalPath: 'site\\wwwroot'
-        preloadEnabled: true
-      }
-    ]
-    loadBalancing: 'LeastRequests'
+       loadBalancing: 'LeastRequests'
     experiments: {
       rampUpRules: []
     }
@@ -199,7 +166,6 @@ resource AppServiceName_AppServiceName_azurewebsites_net 'Microsoft.Web/sites/ho
   location: location
   properties: {
     siteName: 'WebAppNametest'
-    hostNameType: 'Verified'
   }
 }
 
