@@ -1,6 +1,9 @@
-param AppServiceName string = 'WebAppName'
-param AppServicePlanName string = 'ASP-WebApp'
+param AppServiceName string = ''
+param AppServicePlanName string = ''
+
 var location = resourceGroup().location
+
+
 resource AppServicePlanName_resource 'Microsoft.Web/serverfarms@2021-02-01' = {
   name: AppServicePlanName
   location: location
@@ -61,8 +64,8 @@ resource AppServiceName_resource 'Microsoft.Web/sites@2021-02-01' = {
 }
 
 resource AppServiceName_ftp 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2021-02-01' = {
-  parent: AppServiceName
-_resource
+  parent: AppServiceName_resource
+
   name: 'ftp'
   location: location
   properties: {
@@ -71,8 +74,8 @@ _resource
 }
 
 resource AppServiceName_scm 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2021-02-01' = {
-  parent: AppServiceName
-_resource
+  parent: AppServiceName_resource
+
   name: 'scm'
   location: location
   properties: {
@@ -81,8 +84,8 @@ _resource
 }
 
 resource AppServiceName_web 'Microsoft.Web/sites/config@2021-02-01' = {
-  parent: AppServiceName
-_resource
+  parent: AppServiceName_resource
+
   name: 'web'
   location: location
   properties: {
@@ -129,7 +132,7 @@ _resource
     vnetRouteAllEnabled: false
     vnetPrivatePortsCount: 0
     localMySqlEnabled: false
-    ipSecurityRestrictions: [
+     ipSecurityRestrictions:  [
       {
         ipAddress: 'Any'
         action: 'Allow'
@@ -165,7 +168,7 @@ resource AppServiceName_AppServiceName_azurewebsites_net 'Microsoft.Web/sites/ho
   name: '${AppServiceName}.azurewebsites.net'
   location: location
   properties: {
-    siteName: 'WebAppNametest'
+    siteName: AppServiceName
   }
 }
 
