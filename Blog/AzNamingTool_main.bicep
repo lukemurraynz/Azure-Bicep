@@ -1,3 +1,4 @@
+//Related to a Blog Article: https://luke.geek.nz for setting up Azure Naming Tool.
 ///Parameter Setting
 param location string = resourceGroup().location
 
@@ -39,8 +40,6 @@ resource storageAccounts_aznamingstgacc_name_resource 'Microsoft.Storage/storage
     allowSharedKeyAccess: true
     networkAcls: {
       bypass: 'AzureServices'
-      virtualNetworkRules: []
-      ipRules: []
       defaultAction: 'Allow'
     }
     supportsHttpsTrafficOnly: true
@@ -81,7 +80,7 @@ resource storageAccounts_aznamingstgacc_name_default_aznamingtool 'Microsoft.Sto
   name: 'aznamingtool'
   properties: {
     accessTier: 'TransactionOptimized'
-    shareQuota: 500
+    shareQuota: 100
     enabledProtocols: 'SMB'
   }
 }
